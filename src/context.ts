@@ -1,5 +1,16 @@
-import { createContext } from "react";
+import { Soloist } from "./soloist";
 
-const soloistContext = createContext(null);
+type MetaSoloist = { [key: string | number | symbol]: {} };
 
-export { soloistContext };
+const soloistContext = new Soloist();
+const readMetaSoloistContext = () => soloistContext;
+
+function setMetaSoloist<T extends MetaSoloist>(meta: T[]) {
+  soloistContext.createMeta(meta);
+}
+
+export {
+  setMetaSoloist,
+  readMetaSoloistContext,
+  type MetaSoloist
+};
