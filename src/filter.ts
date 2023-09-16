@@ -3,8 +3,10 @@ import { Soloist } from "./soloist";
 
 type FilterFormat = { where: MetaSoloist };
 
+// const $any = "*";
+
 function filter(store: Soloist, where?: FilterFormat) {
-  const metaStore = store.getStore();
+  const metaCurrentStore = [...store.getStore()];
   const whereGlobal = store.getGlobal();
 
   if (where && whereGlobal) {
@@ -13,7 +15,7 @@ function filter(store: Soloist, where?: FilterFormat) {
 
   const whereKeys = where ? Object.keys(where.where) : Object.keys(whereGlobal.where);
 
-  return metaStore.filter((item) => {
+  return metaCurrentStore.filter((item) => {
     return whereKeys.every((key) => {
       return item[key] === (where ? where.where[key] : whereGlobal.where[key]);
     });
