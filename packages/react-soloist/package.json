@@ -2,12 +2,19 @@
   "name": "@quiztrack/react-soloist",
   "version": "0.0.0-1",
   "description": "",
+  "type": "module",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
+    "build": "tsup ./src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
+  "files": [
+    "./dist/**/*"
+  ],
   "devDependencies": {
     "@types/react": "^18.2.21",
     "tsup": "^7.2.0",

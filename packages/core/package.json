@@ -1,6 +1,6 @@
 {
   "name": "@quiztrack/soloist-core",
-  "version": "0.0.0-1",
+  "version": "0.0.0-2",
   "description": "The core of @quiztrack/soloist",
   "type": "module",
   "main": "./src/index.ts",
@@ -14,6 +14,9 @@
     "build": "tsup ./src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "files": [
+    "./dist/**/*"
+  ],
   "keywords": [],
   "author": "",
   "license": "MIT",
