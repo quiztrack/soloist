@@ -1,1 +1,0 @@
-# @quiztrack/react-soloist
