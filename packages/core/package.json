@@ -1,6 +1,6 @@
 {
   "name": "@quiztrack/soloist-core",
-  "version": "0.0.0-3",
+  "version": "0.0.0-alpha.3",
   "description": "The core of @quiztrack/soloist",
   "type": "module",
   "main": "./src/index.ts",
@@ -30,6 +30,7 @@
       "esm"
     ],
     "outDir": "./dist",
+    "sourcemap": true,
     "dts": true
   }
 }
