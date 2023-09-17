@@ -1,14 +1,37 @@
-import { useMemo } from "react";
+import { useRef } from "react";
 import { readMetaSoloistContext } from "./context";
-import { filter, FilterFormat } from "./filter";
+import { filter, FilterFormat, FilterResult } from "./filter";
 
-const useSoloist = (where?: FilterFormat, end?: number) => {
-  return useMemo(() => {
-    const store = readMetaSoloistContext();
-    const result = filter(store, where);
+type TryFilterFunction = (result: FilterResult) => any;
+type UseSoloistOption = {
+  where?: FilterFormat;
+  tryFilter?: TryFilterFunction;
+};
 
-    return result?.slice(0, end);
-  }, [where, end]);
+function useSoloist(options?: UseSoloistOption) {
+  const { where, tryFilter } = options ?? {};
+  const prevResultRef = useRef<FilterResult | null>(null);
+  const startFilter = (_where?: FilterFormat) => {
+    const soloist = readMetaSoloistContext();
+    const tryWhere = _where || soloist.getGlobal();
+
+    if (tryWhere) {
+      const result = filter([...soloist.getStore()], tryWhere);
+      prevResultRef.current = result;
+
+      return result;
+    } else {
+      throw new Error("Global and scope not defined any one.");
+    }
+  };
+
+  if (prevResultRef.current === null) {
+    const result = startFilter(where);
+
+    return [tryFilter?.(result) ?? result, startFilter];
+  }
+
+  return [prevResultRef.current, startFilter];
 };
 
 export { useSoloist };

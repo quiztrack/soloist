@@ -1,25 +1,34 @@
 import { MetaSoloist } from "./context";
-import { Soloist } from "./soloist";
 
 type FilterFormat = { where: MetaSoloist };
 
-// const $any = "*";
+class FilterResult<T = {}> {
+  private _values: T[] = [];
 
-function filter(store: Soloist, where?: FilterFormat) {
-  const metaCurrentStore = [...store.getStore()];
-  const whereGlobal = store.getGlobal();
-
-  if (where && whereGlobal) {
-    return [];
+  constructor(values: T[]) {
+    this._values = values;
   }
 
-  const whereKeys = where ? Object.keys(where.where) : Object.keys(whereGlobal.where);
+  getValues(): T[] {
+    return this._values;
+  }
 
-  return metaCurrentStore.filter((item) => {
-    return whereKeys.every((key) => {
-      return item[key] === (where ? where.where[key] : whereGlobal.where[key]);
-    });
-  });
+  asFirst(): T | undefined {
+    return this._values[0];
+  }
 }
 
-export { filter, type FilterFormat };
+// const $any = "*";
+
+function filter(store: any[], where: FilterFormat): FilterResult<any> {
+  const whereKeys = Object.keys(where.where);
+  const result = store.filter((item) => {
+    return whereKeys.every((key) => {
+      return item[key] === where.where[key];
+    });
+  });
+
+  return new FilterResult(result);
+}
+
+export { filter, FilterResult, type FilterFormat };
