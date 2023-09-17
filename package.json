@@ -1,0 +1,21 @@
+{
+  "name": "react-soloist",
+  "version": "0.0.0-5",
+  "description": "",
+  "type": "module",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup ./src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "files": [
+    "dist/**/*"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.2.2"
+  }
+}

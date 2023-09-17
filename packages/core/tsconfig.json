@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+      "composite": false,
+      "target": "ESNext",
+      "moduleResolution": "Bundler"
+    },
+    "include": ["src"]
+  }
+  

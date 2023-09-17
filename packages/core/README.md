@@ -1,0 +1,1 @@
+# @quiztrack/soloist-core
