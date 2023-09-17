@@ -1,10 +1,12 @@
-# React Soloist
+# Soloist
 
 ```text
 📦 -> 📃📃📃...
 ```
 
 ## Examples
+
+`In React`
 
 ```js
 setMetaSoloist([{ tag: "en" }, { tag: "ja" }]);

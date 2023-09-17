@@ -1,8 +1,8 @@
-import { MetaSoloist } from "./context";
+import { MetaSoloist } from "./soloist";
 
 type FilterFormat = { where: MetaSoloist };
 
-class FilterResult<T = {}> {
+class FilterResult<T = any> {
   private _values: T[] = [];
 
   constructor(values: T[]) {
@@ -20,7 +20,7 @@ class FilterResult<T = {}> {
 
 // const $any = "*";
 
-function filter(store: any[], where: FilterFormat): FilterResult<any> {
+function filter(store: MetaSoloist[], where: FilterFormat): FilterResult<MetaSoloist> {
   const whereKeys = Object.keys(where.where);
   const result = store.filter((item) => {
     return whereKeys.every((key) => {
